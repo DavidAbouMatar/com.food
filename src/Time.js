@@ -18,11 +18,10 @@ const Time = (time) => {
         renderItem={({ item, index }) => (
           <View style={{ width: "100%" }}>
             <TouchableOpacity>
-            <Text style={styles.day}> {item.time}</Text>
+              <Text style={styles.day}> {item.time}</Text>
             </TouchableOpacity>
           </View>
         )}
-
         ListFooterComponent={<View style={{ height: width / 3 }}></View>}
       />
     </SafeAreaView>
@@ -36,7 +35,6 @@ const styles = StyleSheet.create({
   },
   day: {
     fontSize: 20,
-    fontFamily: "sans-serif-medium",
     fontWeight: "300",
     color: "white",
     padding: 20

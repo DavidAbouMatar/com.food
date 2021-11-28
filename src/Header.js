@@ -5,23 +5,12 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   Dimensions,
   FlatList,
   ScrollView
 } from "react-native";
 
 const { width } = Dimensions.get("window");
-
-const Items = ({ title }) => (
-  <View style={{ height: "100%" }}>
-    <FlatList
-      // horizontal={true}
-      data={DATA.data}
-      renderItem={({ item }) => <Text> {item}</Text>}
-    />
-  </View>
-);
 
 const Header = ({ days, time }) => {
   const [scroll, setScroll] = useState(0);
@@ -37,24 +26,19 @@ const Header = ({ days, time }) => {
       <View>
         <FlatList
           onScroll={(e) => {
-            //number of cells = scrolled x-axis/width of a cell
             const w = width / 3;
             let offset = e.nativeEvent.contentOffset.x;
             let index = parseInt(offset / w) + 1;
             setScroll(index);
-            // flatListRef.current.scrollToIndex({ index: index })
           }}
           showsHorizontalScrollIndicator={false}
           pagingEnabled={true}
-          //  onTouchStart={() => scrollView.current.ScrollTo({x:300})}
           onTouchMove={() => scrollView.current.scrollTo({ x: width * scroll })}
-    
           viewabilityConfig={{
             itemVisiblePercentThreshold: 50
           }}
           horizontal={true}
           data={days}
-     
           renderItem={({ item, index }) => (
             <View
               style={{
@@ -62,7 +46,6 @@ const Header = ({ days, time }) => {
                 height: 60,
                 backgroundColor: "#39437C"
               }}
-              
             >
               <Text style={styles.day}> {item}</Text>
             </View>
