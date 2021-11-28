@@ -6,26 +6,23 @@ import {
   View,
   SafeAreaView,
   FlatList,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from "react-native";
 const { width } = Dimensions.get("window");
 const Time = (time) => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        onScroll={(e) => {
-          const w = width / 3;
-          let offset = e.nativeEvent.contentOffset.x;
-          let index = parseInt(offset / w) + 1;
-          console.log("now index is " + index);
-        }}
         data={time.time}
         renderItem={({ item, index }) => (
           <View style={{ width: "100%" }}>
+            <TouchableOpacity>
             <Text style={styles.day}> {item.time}</Text>
+            </TouchableOpacity>
           </View>
         )}
-        // keyExtractor={(item) => index}
+
         ListFooterComponent={<View style={{ height: width / 3 }}></View>}
       />
     </SafeAreaView>
